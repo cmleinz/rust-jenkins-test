@@ -3,9 +3,22 @@ pipeline {
   agent any
   
   stages {
+
+    stage("lint") {
+      steps {
+        sh "cargo clippy"
+      }
+    }
+
     stage("build") {
       steps {
-        echo "Testing" 
+        sh "cargo b"
+      }
+    }
+
+    stage("test") {
+      steps {
+        sh "cargo t"
       }
     }
   }
